@@ -1,12 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="./style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
-    <script src="./script.js"></script>
-    
+    <div class="outside">
+        <div class="playarea">
+            <div id="playbutton">
+            <button>Play</button></div>
+            <div id="scoreboard">
+                <div class="yourChoice"></div>
+                <div class="computerChoice"></div>
+                <div class="score">Score: You 0 - 0 Computer</div>
+            </div>
+            <div class="choice">
+                <button class="rock">Rock</button>
+                <button class="paper">Paper</button>
+                <button class="scissors">Scissors</button>
+            </div>
+        </div>
+    </div>
+    <div id="popup" class="box">
+        <p id="winner"></p>
+        <button class="okbutton">ok</button>
+    </div>
 </body>
 </html>

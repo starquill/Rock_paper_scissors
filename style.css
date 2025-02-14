@@ -1,0 +1,70 @@
+.choice{
+    justify-content: center;
+    display: flex;
+
+}
+
+.outside{
+    display: flex;
+    flex-direction: column;
+    background-color: #F0A202;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-weight: bold;
+    color: white;
+    
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    height: 100%;
+}
+
+button{
+    font-weight: bold;
+    color: black;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 20px;
+    background-color: #D95D39;
+    border-color: white;
+    height: fit-content;
+    width: fit-content;
+}
+
+.playarea{
+    min-height: 15rem;
+    display: flex;
+    flex-direction: column;
+    background-color: #202C59;
+    padding: 50px;
+    border-radius: 30px;
+    justify-content: space-between;
+    align-items: center;
+    height: 30rem;
+}
+
+.box{
+    font-weight: bold;
+    color: black;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    border-radius: 30px;
+    display: none;
+    height: 10rem;
+    width: 20rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    transform: translate(-50%,-50%);
+    background-color: white;
+    text-align: center;
+}
+
+#scoreboard{
+    display: none;
+}

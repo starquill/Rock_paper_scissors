@@ -1,54 +1,97 @@
+const playbtn=document.getElementById("playbutton");
+const rockbtn=document.querySelector(".rock");
+const paperbtn=document.querySelector(".paper");
+const scissorbtn=document.querySelector(".scissors");
+const okbtn=document.querySelector(".okbutton");
+const winnerText=document.querySelector("#winner");
+const popup=document.querySelector("#popup");
+const scoreboard=document.querySelector("#scoreboard");
+const userChoice=document.querySelector(".yourChoice");
+const computerChoice=document.querySelector(".computerChoice");
+const score=document.querySelector(".score");
+
+function setChoiceButtonsState(state) {
+    rockbtn.disabled = !state;
+    paperbtn.disabled = !state;
+    scissorbtn.disabled = !state;
+}
+
+setChoiceButtonsState(false); 
+
 let obj={userscore:0,Computersscore:0};
 
-function input(obj){
-    let userguess=prompt("Rock , Paper or scissors?","Rock/Paper/Scissors");
+playbtn.addEventListener("click",()=>{
+    playbtn.style.visibility="hidden";
+    obj.userscore=0;
+    obj.Computersscore=0;
+    setChoiceButtonsState(true);
+    scoreboard.style.display="block"; 
+})
 
-    userguess=userguess.toUpperCase();
-    let guess=0;
+rockbtn.addEventListener("click",()=>{
+    if(!rockbtn.disabled) roundwinner(generator(),0);
+})
+scissorbtn.addEventListener("click",()=>{
+    if(!scissorbtn.disabled)roundwinner(generator(),1);
+})
+paperbtn.addEventListener("click",()=>{
+    if(!paperbtn.disabled)roundwinner(generator(),2);
+})
 
-    let computerguessno=Math.floor(Math.random()*3)
-    if(userguess=="ROCK"){
-        guess=0;
-        output(computerguessno,guess,obj);
-    }
-    else if(userguess=="SCISSORS"){
-        guess=1;
-        output(computerguessno,guess,obj);
-    }
-    else if(userguess=="PAPER"){
-        guess=2;
-        output(computerguessno,guess,obj);
-    }
-    else{
-        alert(`invalid input`);
-        input(obj);
-    }
+function generator(){
+    return Math.floor(Math.random()*3);
 }
 
-function output(computerguessno,userguess,obj){
-    let computerguess;
-    if(computerguessno==0)
-        computerguess="ROCK";
-    else if(computerguessno==1)
-        computerguess="SCISSORS";
-    else
-        computerguess="PAPER";
+function winner(obj){
+    if(obj.Computersscore==5)
+    pop("You lost..Its never late..One more try?.");
+    else if(obj.userscore==5)
+    pop("You win!!!");
 
-    if(computerguessno-userguess==0){
-        alert(`Its a draw ,computer chose ${computerguess}.Your score: ${obj.userscore} and computerscore: ${obj.Computersscore}`);
-        }
-        else if(userguess-computerguessno==-2 || userguess-computerguessno==1){
+}
+
+function roundwinner(comp,user){
+      if(user==0){
+        userChoice.textContent="Your choice:Rock";
+      }
+      else if(user==1){
+        userChoice.textContent="Your choice:Scissors";
+      }
+      else if(user==2){
+        userChoice.textContent="Your choice:Paper";
+      }
+      if(comp==0){
+        computerChoice.textContent="Computer choice:Rock";
+      }
+      else if(comp==1){
+        computerChoice.textContent="Computer choice:Scissors";
+      }
+      else if(comp==2){
+        computerChoice.textContent="Computer choice:Paper";
+      }
+      if(comp==user)
+        return;
+      else if(user-comp==-2 || user-comp==1)
         obj.Computersscore++;
-        alert(`Computer wins ,computer chose ${computerguess}. Your score: ${obj.userscore} and computerscore: ${obj.Computersscore}`);
-        }
-        else {
+      else
         obj.userscore++;
-        alert(`You won ,computer chose ${computerguess} . Your score: ${obj.userscore} and computerscore: ${obj.Computersscore}`);
-        }
-        input(obj);
+      if(obj.Computersscore==5 || obj.userscore==5)
+        setChoiceButtonsState(false); 
+      score.textContent=`Score: You ${obj.userscore} - ${obj.Computersscore} Computer`;
+    winner(obj);
 }
 
-input(obj);
+function pop(element){
+    winnerText.textContent=element;
+    popup.style.display="flex";
+    scoreboard.style.display = "none";
 
+}
 
-
+okbtn.addEventListener("click",()=>{
+    popup.style.display="none";
+    obj.Computersscore=0;
+    obj.userscore=0;
+    playbtn.style.visibility="visible";
+    scoreboard.style.display="none";
+})
