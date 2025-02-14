@@ -26,6 +26,7 @@ playbtn.addEventListener("click",()=>{
     obj.Computersscore=0;
     setChoiceButtonsState(true);
     scoreboard.style.display="block"; 
+    score.textContent=`Score: You ${obj.userscore} - ${obj.Computersscore} Computer`;
 })
 
 rockbtn.addEventListener("click",()=>{
